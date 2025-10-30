@@ -1,0 +1,32 @@
+<div class="w-full p-2">
+    <div class="rounded shadow-md p-3 border">
+        <div class="flex items-center justify-between">
+            <h3 class="text-blue-600 text-2xl font-bold mb-3">Liste des candidats</h3>
+            <span routerLink="/enterprise/user/add" class="fa fa-plus font-bold"></span>
+        </div>
+       
+        <table class="w-full">
+            <thead>
+                <th class="border text-left  p-2">Nom</th>
+                <th class="border text-left  p-2">Prénom</th>
+                <th class="border text-left  p-2">Email</th>
+                <th class="border text-left  p-2">Numéro</th>
+                <th class="border text-left  p-2">Actions</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of candidats">
+                    <td class="border  p-2">{{ user.lastname }}</td>
+                    <td class="border  p-2">{{ user.firstname }}</td>
+                    <td class="border  p-2">{{ user.username }}</td>
+                    <td class="border  p-2">{{ user.phone }}</td>
+                    <td class="border flex gap-2  p-2">
+                        <a routerLink="/enterprise/user/edit/{{ user.id}}" class="bg-blue-600 text-white p-2" >Modifier</a>
+                        <a class="bg-red-600 text-white p-2"  (click)="deleteUser(user.id)">Supprimer</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+  
+</div>

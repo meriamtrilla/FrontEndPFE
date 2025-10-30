@@ -1,0 +1,28 @@
+/* src/app/components/candidate-dashboard/candidate-dashboard.component.scss */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    color: #4a4a4a;
+  }
+  
+  .grid {
+    gap: 1rem; /* Spacing between cards */
+  }
+  
+  h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  button {
+    background-color: #007bff;
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+  

@@ -1,0 +1,93 @@
+<div *ngIf="!starting && !finished" class="m-8 bg-white border shadow-md rounded-md p-6 max-w-4xl mx-auto">
+    
+      <img src="assets\entr.png" class="w-32 my-4">
+      <hr>
+      <br>
+    <h3 class="text-2xl font-bold">{{ offer.test?.title }}</h3> 
+    <p class="my-4">
+        {{ offer.test?.description }}
+    </p>
+    
+                    
+    <div>
+       <p class="mb-3 text-gray-500"> 
+        <span class="mr-3 fa fa-bars"></span>jjjj {{ offer.test?.questions?.length}} different questions.
+       </p>
+       <p class="mb-3 text-gray-500"> <span class="mr-3 fa fa-clock"></span>
+         {{ offer.test?.dure}} munites pour tous les questions.
+       </p>
+       <p class="mb-3 text-gray-500"> <span class="mr-3 fa fa-shield-halved"></span> 
+        Obtenir un score dans le top 90% pour ganger.
+       </p> 
+    </div>
+    <hr />
+
+    <div class="my-3">
+        <h3 class="font-medium text-xl my-3">Avant de commancer </h3>
+        <ul class="text-gray-600">
+            <li> <span class="fa fa-check mr-2"></span>
+                Vous devez effectuer cette evaluation en une seule fois et vous assurer que votre connexion internet et fiable</li>
+            <li><span class="fa fa-check mr-2"></span> Vous pouvez repasser cette evaluation  une  fois a un nouvelle offre si accepte</li>
+            <li><span class="fa fa-check mr-2"></span> Nous ne montrons vos resultat a personne sans votre permission</li>
+        </ul>
+    </div>
+    <hr />
+    <div class="flex justify-end my-3">
+        <button (click)="startTest()" class="bg-blue-600 text-white rounded-md px-4 py-2 mr-2">Commencer</button>
+    </div>
+</div>
+
+
+<div class="" *ngIf="starting">
+    <div class="bg-white max-w-4xl mx-auto shadow-md  rounded-md" >
+        <h3 class="p-4 bg-blue-600 text-white text-center">Test d'evaluation</h3>
+        <div class="py-8 px-4">
+            <h4 class="font-medium text-xl"> {{ selectedQuestion.name }}</h4>
+            <p class="text-gray-700 mb-3 text-md">
+                {{ selectedQuestion.description }}
+            </p>
+            <img src="http://localhost:8080{{ selectedQuestion.photo }}" class="w-32 h-32 mx-auto" *ngIf="selectedQuestion.photo" alt="">
+       
+            <div *ngFor="let r of selectedQuestion?.responses" class="mx-4 my-4 flex items-center gap-6">
+              
+                <input type="radio" [(ngModel)]="response" name="response" value="{{r}}"> <span>{{ r }}</span> 
+            </div>
+            
+        </div> 
+
+        <div class="p-4 flex items-center justify-between">
+            <div>
+                <p> Question {{ questionNumber }} /  {{ total  }} ( <span class="text-blue-600">{{ displayTime }}</span> ) </p>
+                
+            </div>
+            
+            <div>
+                <button  (click)="nextQuestion()" class="bg-green-600 text-white rounded-md px-4 py-2 mr-2">Suivant</button>
+               
+            </div>
+           
+        </div>
+    
+    </div>
+
+</div>
+
+<div class="" *ngIf="finished">
+    <div class="bg-white max-w-4xl mx-auto shadow-md  rounded-md" >
+        <h3 class="p-4 bg-blue-600 text-white text-center">Test d'evaluation</h3>
+        <div class="py-8 px-4 flex flex-col justify-center items-center">
+            <img src="assets/cap.jpg" class="w-32 my-4">
+       <h3 class="font-bold text-xl text-green-600">Felicitations, vous avez passer a l'etape suivant.</h3>
+           
+        </div> 
+
+        <div class="p-4 flex items-center justify-center">
+           
+           
+                <button routerLink="/candidate/mycandidates" class="bg-blue-600 text-white rounded-md px-4 py-2 mr-2">Quitter</button>
+              
+           
+        </div>
+    
+    </div>
+</div>

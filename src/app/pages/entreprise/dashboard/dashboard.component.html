@@ -1,0 +1,166 @@
+<div class="flex  flex-wrap p-2">
+    <div class="w-full flex flex-wrap">
+        <div class="w-1/4 p-2">
+            <div class="rounded shadow-md p-3 border text-center">
+               
+               <!-- <div *ngFor="let c of " class="flex gap-2 mb-4">
+                <img src="http://localhost:8080{{c?.user?.avatar}}" alt="" class="w-12 h-12 rounded-full object-cover">
+                <h3>   {{ c?.user?.lastname }} {{ c?.user?.firstname }} 
+                    <br />
+                    <span class="text-gray-500">{{ c?.user?.speciality }}</span> 
+                </h3>
+              
+               </div> -->
+               <h3 class="text-green-600 text-6xl font-bold mb-3"><i class="fa fa-people-group"></i></h3>
+               <h3 class="text-green-600 text-2xl font-bold mb-3">{{ currentCandidatures().length }}</h3>
+               
+               <h3 class="text-black text-md font-semibold mb-3">Recrutement en cours</h3>
+             
+               
+            </div>
+           
+    
+        </div>
+
+        <div class="w-1/4 p-2">
+            <div class="rounded shadow-md p-3 border text-center">
+               
+               <!-- <div *ngFor="let c of " class="flex gap-2 mb-4">
+                <img src="http://localhost:8080{{c?.user?.avatar}}" alt="" class="w-12 h-12 rounded-full object-cover">
+                <h3>   {{ c?.user?.lastname }} {{ c?.user?.firstname }} 
+                    <br />
+                    <span class="text-gray-500">{{ c?.user?.speciality }}</span> 
+                </h3>
+              
+               </div> -->
+               <h3 class="text-red-600 text-6xl font-bold mb-3"><i class="fa fa-file-signature"></i></h3>
+               
+               <h3 class="text-red-600 text-2xl font-bold mb-3">{{ offers.length }}</h3>
+               <h3 class="text-black text-md font-semibold mb-3">Les offres</h3>
+               
+               
+            </div>
+           
+    
+        </div>
+
+        <div class="w-1/4 p-2">
+            <div class="rounded shadow-md p-3 border text-center">
+               
+               <!-- <div *ngFor="let c of " class="flex gap-2 mb-4">
+                <img src="http://localhost:8080{{c?.user?.avatar}}" alt="" class="w-12 h-12 rounded-full object-cover">
+                <h3>   {{ c?.user?.lastname }} {{ c?.user?.firstname }} 
+                    <br />
+                    <span class="text-gray-500">{{ c?.user?.speciality }}</span> 
+                </h3>
+              
+               </div> -->
+               <h3 class="text-violet-600 text-6xl font-bold mb-3"><i class="fa fa-check-double"></i></h3>
+               <h3 class="text-violet-600 text-2xl font-bold mb-3">{{ tests.length }}</h3>
+               
+               <h3 class="text-black text-md font-semibold mb-3">Les tests</h3>
+               
+               
+            </div>
+           
+    
+        </div>
+
+        <div class="w-1/4 p-2">
+            <div class="rounded shadow-md p-3 border text-center">
+               
+               <!-- <div *ngFor="let c of " class="flex gap-2 mb-4">
+                <img src="http://localhost:8080{{c?.user?.avatar}}" alt="" class="w-12 h-12 rounded-full object-cover">
+                <h3>   {{ c?.user?.lastname }} {{ c?.user?.firstname }} 
+                    <br />
+                    <span class="text-gray-500">{{ c?.user?.speciality }}</span> 
+                </h3>
+              
+               </div> -->
+               <h3 class="text-teal-500 text-6xl font-bold mb-3"><i class="fa fa-video"></i></h3>
+               <h3 class="text-teal-500 text-2xl font-bold mb-3">{{ interviews.length }}</h3>
+               
+               <h3 class="text-black text-md font-semibold mb-3">Les entretiens</h3>
+               
+               
+            </div>
+           
+    
+        </div>
+
+        <div class="w-1/4 p-2">
+            <div class="rounded shadow-md p-3 border text-center">
+               
+               <!-- <div *ngFor="let c of " class="flex gap-2 mb-4">
+                <img src="http://localhost:8080{{c?.user?.avatar}}" alt="" class="w-12 h-12 rounded-full object-cover">
+                <h3>   {{ c?.user?.lastname }} {{ c?.user?.firstname }} 
+                    <br />
+                    <span class="text-gray-500">{{ c?.user?.speciality }}</span> 
+                </h3>
+              
+               </div> -->
+               <h3 class="text-fuchsia-600 text-6xl font-bold mb-3"><i class="fa fa-layer-group"></i></h3>
+               <h3 class="text-fuchsia-600 text-2xl font-bold mb-3">{{ categories.length }}</h3>
+               
+               <h3 class="text-black text-md font-semibold mb-3">Les categories</h3>
+               
+               
+            </div>
+           
+    
+        </div>
+
+        <div class="w-1/4 p-2">
+            <div class="rounded shadow-md p-3 border text-center">
+               
+               <!-- <div *ngFor="let c of " class="flex gap-2 mb-4">
+                <img src="http://localhost:8080{{c?.user?.avatar}}" alt="" class="w-12 h-12 rounded-full object-cover">
+                <h3>   {{ c?.user?.lastname }} {{ c?.user?.firstname }} 
+                    <br />
+                    <span class="text-gray-500">{{ c?.user?.speciality }}</span> 
+                </h3>
+              
+               </div> -->
+               <h3 class="text-blue-600 text-6xl font-bold mb-3"><i class="fa fa-users-viewfinder"></i></h3>
+               <h3 class="text-blue-600 text-2xl font-bold mb-3">{{ countDistinctUserIds() }}</h3>
+               
+               <h3 class="text-black text-md font-semibold mb-3">Total candidats</h3>
+             
+               
+            </div>
+           
+    
+        </div>
+
+        <div class="w-1/4 p-2">
+            <div class="rounded shadow-md p-3 border text-center">
+               
+               <!-- <div *ngFor="let c of " class="flex gap-2 mb-4">
+                <img src="http://localhost:8080{{c?.user?.avatar}}" alt="" class="w-12 h-12 rounded-full object-cover">
+                <h3>   {{ c?.user?.lastname }} {{ c?.user?.firstname }} 
+                    <br />
+                    <span class="text-gray-500">{{ c?.user?.speciality }}</span> 
+                </h3>
+              
+               </div> -->
+               <h3 class="text-yellow-600 text-6xl font-bold mb-3"><i class="fa fa-folder-open"></i></h3>
+               <h3 class="text-yellow-600 text-2xl font-bold mb-3">{{ candidatures.length }}</h3>
+               
+               <h3 class="text-black text-md font-semibold mb-3">Total des Condidatures</h3>
+              
+               
+            </div>
+           
+    
+        </div>
+    
+       
+        
+       
+
+    </div>
+   
+ 
+   
+
+</div>

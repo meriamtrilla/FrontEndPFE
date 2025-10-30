@@ -1,0 +1,21 @@
+<div class="max-w-lg mx-auto">
+    <h3 class="font-bold text-2xl text-center mb-8">Modifier intrest</h3>
+
+    <form #formIntrest="ngForm" (submit)="editIntrest(formIntrest)">
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Loisirs et intérêts</label>
+            <input type="text" id="intrestName" class="w-full p-2 border rounded" name="name" [(ngModel)]="intrest.name" required />
+        </div>
+
+        
+        
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Description</label>
+            <textarea class="w-full p-2 border rounded" name="description" [(ngModel)]="intrest.description" required></textarea>
+           
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white rounded-md px-3.5 py-1.5">Mettre a jour</button>
+    </form>
+
+</div>

@@ -1,0 +1,25 @@
+<div class="max-w-lg mx-auto">
+    <h3 class="font-bold text-2xl text-center mb-8">Modifier langue</h3>
+
+    <form #formLanguage="ngForm" (submit)="editLanguage(formLanguage)">
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Nom de langue</label>
+            <input type="text" id="name" class="w-full p-2 border rounded" name="name" [(ngModel)]="language.name" required />
+        </div>
+
+        
+        
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Niveau</label>
+            <select class="w-full p-2 border rounded" name="level" [(ngModel)]="language.level">
+                <option value="Debutante">Debutante</option>
+                <option value="Moyen">Moyen</option>
+                <option value="Expert">Expert</option>
+            </select>
+           
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white rounded-md px-3.5 py-1.5">Mettre à jour</button>
+    </form>
+
+</div>

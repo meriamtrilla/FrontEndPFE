@@ -1,0 +1,148 @@
+<div class="container mx-auto p-4 flex gap-3">
+
+  <div class="w-2/3 border p-4">
+    <div class="flex items-center justify-between">
+      <h3 class="text-2xl font-bold my-4">Entretien en ligne</h3>
+      <span routerLink="/hr/interviews/create" class="fa fa-plus font-bold"></span>
+    </div>
+    
+    <p class="font-sm mb-4">
+      Les entretiens en ligne sont des entrevues professionelles, ils permettent aux employeurs et aux candidat de se renconter et de discuter en temps réel, quel que soit leur emplacelment géographique.
+    </p>
+    <hr />
+    <div>
+      <div class="flex justify-between my-4">
+        <button class="border rounded-sm px-3.5 py-1.5 text-gray-600" (click)="getInterviews()">Tout</button>
+        <input type="text" class="border rounded-sm px-3.5 py-1.5" (keypress)="searchinterviews()" [(ngModel)]="searchQuery" placeholder="rechercher ..." />
+       
+      </div>
+      <div >
+          <div *ngFor="let interview of interviews" class="flex p-3 my-3 items-center border gap-8" routerLink="/hr/interviews/{{ interview.id}}/show">
+            <div>
+              <img src="assets\entr.png" alt="Custom Icon" class="w-15 h-15"
+/>
+            </div>
+           <div>
+            <h3 class="font-bold">  {{ interview.title }} </h3>
+            <p class="text-gray-400">{{ interview.description }}</p>
+            <p class="text-gray-400">3 candidats ayant passé cet entretien.</p>
+           </div>
+           <div >
+            <td class="px-6 py-4 whitespace-nowrap">
+              <a
+               routerLink="/hr/interviews/{{ interview.id }}/show"
+                class="text-indigo-600 hover:text-indigo-900 mr-2"
+              >
+                <i class="fa fa-pencil"></i>
+              </a>
+              <a
+                
+                class="text-red-600 hover:text-red-900"
+              >
+              <i class="fa fa-trash"></i>
+              </a>
+            </td>
+           </div>
+
+          </div>
+      </div>
+    </div>
+
+  </div>
+  <div>
+
+  </div>
+  <div class="w-1/3 border p-4">
+    <h3 class=" text-2xl font-bold my-4">Évaluation</h3>
+    <div class="flex gap-8">
+        <div class="p-4">
+          <p class="text-center font-medium text-green-600">
+            2 <br /> Succès
+          </p>
+
+        </div>
+        <div class="py-4 px-2">
+          <p class="text-center font-medium text-red-600">
+            0 <br />
+            Échec</p>
+    
+        </div>
+    </div>
+   
+
+  </div>
+  <div>
+
+  </div>
+</div>
+  
+
+
+
+
+
+
+
+
+
+   <!--  
+
+
+<div class="max-w-8xl my-16 mx-auto p-4">
+     Header with Add New Test button 
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-2xl font-bold">Liste des entretiens</h1>
+      <a
+        routerLink="/hr/interviews/create"
+        class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 text-sm  font-bold"
+      >
+        <i class="fa fa-plus"></i>
+        Ajouter entretient
+    </a>
+    </div>
+  
+     Tests List 
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Interview title</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr *ngFor="let interview of interviews">
+            <td class="px-6 py-4 whitespace-nowrap">
+                <a routerLink="/hr/interviews/{{ interview.id }}/show">  {{ interview.id }}</a>
+              </td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ interview.title }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ interview.description }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <a
+               routerLink="/hr/interviews/{{ interview.id }}/show"
+                class="text-indigo-600 hover:text-indigo-900 mr-2"
+              >
+                <i class="fa fa-pencil"></i>
+              </a>
+              <a
+                
+                class="text-red-600 hover:text-red-900"
+              >
+              <i class="fa fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      
+  
+    </div>
+    <div>
+  
+
+
+    </div>
+  </div>
+-->

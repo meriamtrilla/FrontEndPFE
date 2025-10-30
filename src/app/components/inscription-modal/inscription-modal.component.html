@@ -1,0 +1,49 @@
+<!-- Backdrop -->
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+  *ngIf="isOpen"
+>
+  <!-- Modal Content -->
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg w-full animate-fade-in">
+    <!-- Modal Header -->
+    <div class="flex justify-between items-center border-b pb-2">
+      <h3 class="text-lg font-semibold">{{ title }}</h3>
+      <button
+        (click)="closeModal()"
+        class="text-gray-400 hover:text-gray-600 focus:outline-none"
+      >
+        &times;
+      </button>
+    </div>
+
+    <!-- Modal Body with Textarea -->
+    <div class="my-4">
+      <label for="motivation" class="block text-gray-700 font-medium mb-2">
+        Code de confirmation d'inscription:
+      </label>
+      <input
+       
+        [(ngModel)]="code"
+        type="text"
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Code de confirmation..."
+        />
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="flex justify-end space-x-2">
+      <button
+        (click)="closeModal()"
+        class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+      >
+        Fermer
+      </button>
+      <button
+        (click)="confirmAction()"
+        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+      >
+        Envoyer
+      </button>
+    </div>
+  </div>
+</div>

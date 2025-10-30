@@ -1,0 +1,82 @@
+<div class="container mx-auto p-4">
+
+    <div class="text-center max-w-2xl mx-auto my-6">
+        <form  class="flex gap-4">
+            <input name="searchQuery" [(ngModel)]="searchQuery" type="text" class="rounded-md w-96 border px-2.5 py-1.5" />
+               
+            <button class="rounded-md  bg-blue-600 text-white px-2.5 py-1.5" (click)="searchOffers()">
+                <i class="fa fa-search"></i>
+                Chercher</button>
+        </form>
+    </div>
+
+    <div class="flex mt-4">
+        <div class="flex flex-col  w-1/4 p-4">
+            <div class="border">
+
+          
+            <hr />
+            <h3 class="flex gap-2 items-center font-semibold text-2xl my-2">
+                <i class="fa fa-filter"></i>
+                Filtre
+            </h3>
+            <hr />
+            <div class="flex text-blue-600 items-center justify-between gap-3 mb-2 p-2">
+                Stage <input type="checkbox">
+            </div>
+
+            <div class="flex text-blue-600 items-center justify-between gap-3 mb-2  p-2">
+                CDI <input type="checkbox">
+            </div>
+
+            <div class="flex text-blue-600 items-center justify-between gap-3 mb-2  p-2">
+                CDD <input type="checkbox">
+            </div>
+
+            <div class="flex text-blue-600 items-center justify-between gap-3 mb-2  p-2">
+                SIVP <input type="checkbox">
+            </div>
+
+
+            <hr />
+            <h3 class="flex gap-2 items-center font-semibold text-xl m-2">
+                <i class="fa fa-calendar"></i>Date d'annonces
+            </h3>
+            <hr />
+
+            <h2 class="m-2 text-blue-600 text-left">Dans les derniers 24 heures</h2>
+            <h2 class="m-2 text-blue-600 text-left">Dans les 7 derniers jours</h2>
+            <h2 class="m-2 text-blue-600 text-left">Dans les 30 derniers jours</h2>
+        </div>
+        </div>
+        <div class="w-3/4 p-4">
+
+            <div class="border">
+                <div class="w-full border flex items-center justify-between px-4">
+                    <h1 class="flex gap-2 items-center font-semibold text-2xl my-2">Emploi</h1>
+                    <span>( {{ offers.length }} )</span>
+                </div>
+    
+                <div *ngFor="let offer of offers" class="p-2 mx-2 hover:bg-gray-100" routerLink="/hr/offers/{{ offer.id }}/show">
+                    <h3 class="my-1 text-blue-500 font-bold text-xl">{{ offer.title }}</h3>
+                    <h5 class="my-1">Type de contrat : {{ offer.type_contract }} </h5>
+                    <p class="my-1 text-gray-400">{{ offer.description }} </p>
+                    <h6>{{ offer.number_post}} posts</h6>
+                   <div class="p-5 flex justify-end pl-20">
+                        <span class="bg-green-500 text-white text-sm rounded p-1.5" *ngIf="offer.status"> 
+                        <i  class="fa fa-circle-check"></i> Activer</span> 
+                        <span class="bg-red-500 text-white text-sm rounded p-1.5" *ngIf="!offer.status"> 
+                            <i  class="fa fa-circle-check"></i> Désactiver</span> 
+                     
+                   </div>
+                </div>
+                
+            </div>
+
+            
+        </div>
+
+    </div>
+
+
+</div>

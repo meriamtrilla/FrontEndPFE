@@ -1,0 +1,33 @@
+<div class="max-w-lg mx-auto">
+    <h3 class="font-bold text-2xl text-center mb-8">Ajouter l’éducation</h3>
+
+    
+
+    <form  #formEducation="ngForm" (submit)="addEDucation(formEducation)">
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Nom de l'établissement</label>
+            <input type="text" id="educationName" class="w-full p-2 border rounded" name="university" [(ngModel)]="education.university" required />
+        </div>
+
+        <div class="flex mb-4 gap-4">
+            <div class="w-1/2">
+                <label for="start_year" class="block text-gray-400 mb-2">Année de début</label>
+                <year-select [(selectedYear)]="education.start_year" ></year-select>
+               
+            </div>
+    
+            <div class="w-1/2">
+                <label for="end_year" class="block text-gray-400 mb-2">Année de fin</label>
+                <year-select [(selectedYear)]="education.end_year" ></year-select>
+            </div>
+        </div>
+        
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Diplôme</label>
+            <input type="text" id="diploma" class="w-full p-2 border rounded" name="diploma" [(ngModel)]="education.diploma" required />
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white rounded-md px-3.5 py-1.5">Ajouter</button>
+    </form>
+
+</div>

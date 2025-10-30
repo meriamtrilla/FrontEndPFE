@@ -1,0 +1,236 @@
+<div class="mt-5 flex">
+    <div class="w-1/2  p-4 ">
+            <div class="bg-white border rounded-md p-4" *ngIf="!edit">
+                <div class="border p-2">
+                    <h1 class="font-bold">Détail du test : </h1>
+                </div>
+                <div class="p-4">
+                    <h1 > <b class="text-blue-700">{{ test.title }}</b>  </h1>
+                    <p >
+                       
+                        {{ test.description }}
+                    </p>
+                    <button (click)="activateEdit()" class="rounded bg-green-600 text-white px-3.5 py-1.5 mt-4">Modifier</button>
+                </div>
+                
+
+            </div>
+            <div class="bg-white border rounded-md p-4" *ngIf="edit">
+                <div class="border p-2">
+                    <h1 class="font-bold">Détail du test : </h1>
+                </div>
+                <form (ngSubmit)="updateTest(testForm)" #testForm="ngForm" class="space-y-4" >
+                <div>
+                  <label for="testName" class="block text-sm font-medium text-gray-700">Titre de test</label>
+                  <input
+                    type="text"
+                    id="testName"
+                    name="title"
+                    [(ngModel)]="test.title"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    placeholder="Titre de test ..."
+                  />
+              
+                </div>
+                <div>
+                  <label for="testName" class="block text-sm font-medium text-gray-700">Description du test</label>
+                  <textarea
+                 
+               name="description"
+               [(ngModel)]="test.description"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    placeholder="Ajouter une description au test..."
+                  ></textarea>
+              
+                </div>
+                <div>
+                  <label for="testName" class="block text-sm font-medium text-gray-700">Type de test</label>
+                  <select
+               name="type"
+               [(ngModel)]="test.type"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    placeholder="Ajouter une description au test..."
+                  >
+                  <option value="" disabled selected>Choisir un type</option>
+                  <option *ngFor="let type of testTypes" [value]="type">{{ type }}</option>
+              </select>
+              
+                </div>
+          
+                <div>
+                  <label for="testName" class="block text-sm font-medium text-gray-700">Duree du test ( en munites ) </label>
+                  <input
+                    type="number"
+                    id="testName"
+                    name="dure"
+                    [(ngModel)]="test.dure"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    placeholder="Titre de test ..."
+                  />
+              
+                </div>
+            
+                <button
+                  type="submit"
+                  class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-blue-300"
+              
+                >
+                Mettre à jour
+                </button>
+                </form>
+            </div>
+
+            <div class="w-full my-2">
+              <div class="bg-white border rounded-md p-4" *ngIf="questions.length > 0">
+                  <div class="border p-2">
+                      <h1 class="font-bold">Liste des questions ( {{ questions.length }} ) : </h1>
+                     
+                  </div>
+                  <div *ngFor="let q of questions;index as i" class="p-3">
+                    <div class="flex justify-between">
+                      <h2> Question {{ i+1 }} : </h2>
+                      <div class="flex gap-2">
+                        <span class="fa fa-pencil text-green-600" (click)="updateQuestionData(q.id)"></span>
+                        <span class="fa fa-trash text-red-600" (click)="deleteQuestion(q.id)"></span>
+                      </div>
+                   
+                    </div>
+                    <img src="http://localhost:8080{{ q.photo }}" class="w-32 h-32 mx-auto" *ngIf="q.photo" alt="">
+                    
+                    <h3 class="text-gray-400 my-3">{{ q.name }}</h3>
+                    <ul class="list-disc px-4">
+                        <li *ngFor="let res of q.responses" [class]=" res === q.correct_response ?  'text-green-600 capitalize' : 'capitalize'">{{ res  }}</li>
+                    </ul>
+                   
+                    
+                    <!-- <button (click)="editQuestion(q)" class="rounded bg-blue-600 text-white px-3.5 py-1.5 mt-2">Modifier</button>
+                    <button (click)="deleteQuestion(q)" class="rounded bg-red-600 text-white px-3.5 py-1.5 mt-2">Supprimer</button> -->
+
+                  </div>
+            </div></div>
+    </div>
+    <div class="w-1/2 p-4" *ngIf="!updateQuestion">
+        <div class="bg-white border rounded-md p-4">
+            <div class="border p-2 flex justify-between">
+                <h1 class="font-bold">Ajouter une nouvelle question : </h1>
+                <a routerLink="/hr/tests/{{ test.id }}/questions">
+                    <i class="fa fa-circle-plus"></i>
+                </a>
+            </div>
+            <div class="p-4">
+                <form #questionForm="ngForm" (ngSubmit)="addQuestion(questionForm)">
+                  <label for="">Question : </label>
+                  <input [(ngModel)]="question.name" name="name" type="text" placeholder="Question ..." class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  />
+                  <label class="w-full">Réponse correcte : </label>
+                  <div class="flex items-center justify-between">
+                    
+                    <input [(ngModel)]="question.correct_response" name="correct_response" type="text" placeholder="Si la reponse est une image cliquer sur l'icon ..." class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                   
+                    <span class="fa fa-file" (click)="fileInput.click()"></span>
+                    <input #fileInput type="file" (change)="onFileSelected($event)" style="display: none;" />
+                  </div>
+
+                  <select [(ngModel)]="question.response_type" name="response_type" 
+                  class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <option value="" selected disabled>Sélectionner le type des réponses.</option>
+                    <option value="1">Reponse courte</option>
+                  <option value="2">Paragraphe</option>
+                  <option value="3">Choix multiple</option>
+                  </select>
+
+
+                  <div *ngIf="question.response_type === '3'">
+
+                    <div *ngIf="question.responses.length > 0" >
+                       <div *ngFor="let r of question.responses" class="flex gap-4">
+                        <input type="radio" name="" id="">
+                            <p>
+                              {{ r }}
+                            </p>
+
+                       </div>
+
+                    </div>
+
+                    <div class="flex gap-2">
+                      <input type="radio" name="" id="">
+                      <input type="text" [(ngModel)]="responseInput" name="rinput" class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="tapper votre question" />
+                    </div>
+                    
+                    <a (click)="addResponses()" class="text-blue-500 my-4">Autre option</a>
+                    </div>
+                    
+
+                  <button class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-blue-300" type="submit">Ajouter</button>
+                 
+
+                </form>
+            </div>
+            
+
+        </div>
+    </div>
+
+    <div class="w-1/2 p-4" *ngIf="updateQuestion">
+      <div class="bg-white border rounded-md p-4">
+          <div class="border p-2 flex justify-between">
+              <h1 class="font-bold">Modifier question : </h1>
+              <a routerLink="/hr/tests/{{ test.id }}/questions">
+                  <i class="fa fa-circle-plus"></i>
+              </a>
+          </div>
+          <div class="p-4">
+              <form #questionEditForm="ngForm" (ngSubmit)="updateQuestionForm(questionEditForm)">
+                <label for="">Question : </label>
+                <input [(ngModel)]="question.name" name="name" type="text" placeholder="Question ..." class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+                <label class="w-full">Reponse correcte : </label>
+                <div class="flex items-center justify-between">
+                  
+                  <input [(ngModel)]="question.correct_response" name="correct_response" type="text" placeholder="Si la reponse est une image cliquer sur l'icon ..." class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                 
+                  
+                </div>
+
+                <select [(ngModel)]="question.response_type" name="response_type" 
+                class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                  <option value="" selected disabled>Sélectionner le type des réponses.</option>
+                  <option value="1">Reponse courte</option>
+                  <option value="2">Paragraphe</option>
+                  <option value="3">Choix multiple</option>
+                </select>
+
+
+                <div *ngIf="question.response_type === '3'">
+
+                  <div *ngIf="question.responses.length > 0" >
+                     <div *ngFor="let r of question.responses" class="flex gap-4">
+                      <input type="radio" name="" id="">
+                          <p>
+                            {{ r }}
+                          </p>
+
+                     </div>
+
+                  </div>
+
+                  <div class="flex gap-2">
+                    <input type="radio" name="" id="">
+                    <input type="text" [(ngModel)]="responseInput" name="rinput" class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="tapper votre question" />
+                  </div>
+                  
+                  <a (click)="addResponses()" class="text-blue-500 my-4">Autre option</a>
+                  </div>
+                  
+
+                <button class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-blue-300" type="submit">Mettre a jour</button>
+               
+
+              </form>
+          </div>
+          
+
+      </div>
+  </div>
+</div>

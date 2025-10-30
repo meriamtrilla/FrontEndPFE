@@ -1,0 +1,62 @@
+<nav  class="border shadow-md border-gray-400">
+  <div class="container">
+    <!-- Logo and Menu -->
+    <div class="flex items-center space-x-4" *ngIf="!isAuthenticated">
+      <a href="/" class="text-xl font-bold  text-blue-600">BeeCoders Jobs</a>
+      <div class="desktop-menu">
+        <a href="/" class="menu-item">Trouvez un emploi</a>
+        <a href="/guest/login" class="menu-item">Créer votre CV</a>
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-4" *ngIf="isAuthenticated">
+      <a href="/" class="text-xl font-bold text-blue-600">BeeCoders Jobs</a>
+      <div class="desktop-menu" *ngIf="role === 'ROLE_USER' ">
+        <a href="/candidate/find-job" class="menu-item">Trouvez un emploi</a>
+        <a href="/candidate" class="menu-item">Tableau de board</a>
+        <a href="/candidate/profile" class="menu-item">Mon CV</a>
+        <a href="/candidate/mycandidates" class="menu-item">Mes candidatures</a>
+      </div>
+      <div class="desktop-menu" *ngIf="role === 'ROLE_RH' ">
+        <a href="/hr" class="menu-item">Espace de travail</a>
+        <a href="/hr/offers" class="menu-item">Mes emplois</a>
+        <a href="/hr/tests" class="menu-item">Test</a>
+
+      </div>
+      <div class="desktop-menu" *ngIf="role === 'ROLE_ADMIN' ">
+     
+     
+      </div>
+    </div>
+
+    <!-- Desktop Buttons Group -->
+    <div class="btn-group" *ngIf="!isAuthenticated">
+      <a href="/guest/login" class="btn login">Connexion</a>
+      <a href="/guest/register" class="btn register">Inscription</a>
+      <a href="/guest/hr-space" class="btn hr-space">Espace RH</a>
+    </div>
+    <div *ngIf="isAuthenticated" class=" flex items-center gap-2">
+      <button routerLink="/hr/offers/create" class="bg-green-600 text-white border border-1 p-2 me-3" *ngIf="role === 'ROLE_RH' "><i class="fas fa-plus"></i> Publier une offre</button>
+        <app-notification-dropdown [notifications]="notifications"></app-notification-dropdown> 
+        <i (click)="logout()" role="button" class="fas fa-right-from-bracket"></i> 
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-button" (click)="toggleMobileMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div [ngClass]="{ 'block': isMobileMenuOpen, 'hidden': !isMobileMenuOpen }" class="md:hidden">
+    <div class="px-4 pt-2 pb-4 space-y-2">
+      <a href="/find-job" class="block text-gray-600 hover:text-gray-800">Trouvez un emploi</a>
+      <a href="/create-cv" class="block text-gray-600 hover:text-gray-800">Créer votre CV</a>
+      <a href="/guest/login" class="block btn login">Connexion</a>
+      <a href="/guest/register" class="block btn register">Inscription</a>
+      <a href="/guest/hr-space" class="block btn hr-space">Espace RH</a>
+    </div>
+  </div>
+</nav>

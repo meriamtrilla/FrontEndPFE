@@ -1,0 +1,56 @@
+<!-- src/app/components/candidate-dashboard/candidate-dashboard.component.html -->
+<div class="max-w-4xl mx-auto p-6">
+    <!-- Dashboard Header -->
+    <h1 class="text-2xl font-semibold mb-4">Candidate Dashboard</h1>
+  
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Complete Profile Card -->
+      <div class="bg-white shadow-md rounded-lg p-4 border border-gray-200 h-full">
+        <h2 class="text-lg font-semibold mb-2">Complete Your Profile</h2>
+                <img src="assets/complete.svg" class="w-5/6 mx-auto my-6" alt="">
+        <p class="text-sm text-gray-600 mb-2">Fill out your profile to increase your chances of finding the right job!</p>
+  
+        <!-- Profile Completion Progress Bar -->
+        <div class="mb-4">
+          <p class="text-sm font-medium text-gray-600 mb-1">Profile Completion: {{ profileCompletion }}%</p>
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div
+              class="bg-blue-500 h-2 rounded-full"
+              [style.width]="profileCompletion + '%'"
+            ></div>
+          </div>
+        </div>
+  
+        <button routerLink="/candidate/profile" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Complete Profile</button>
+      </div>
+  
+      <!-- Profile Details Card -->
+      <div class="bg-white shadow-md rounded-lg p-4 border border-gray-200 h-full">
+        <h2 class="text-lg font-semibold mb-2">Profile Details</h2>
+        <img src="assets/profileInfo.svg" class="w-5/6 mx-auto my-6" alt="">
+        <ul class="text-sm text-gray-700">
+          <li><strong>Name:</strong> {{ candidate?.lastname + candidate?.firstname  }}</li>
+          <li><strong>Email:</strong> {{ candidate?.username }}</li>
+          <li><strong>Phone:</strong> {{ candidate?.phone }}</li>
+          <li><strong>Location:</strong> {{ candidate?.city }}</li>
+        </ul>
+      </div>
+  
+      <!-- Mes Candidatures Card -->
+      <div class="bg-white shadow-md rounded-lg p-4 border border-gray-200 h-full">
+        <h2 class="text-lg font-semibold mb-2">Mes Candidatures</h2>
+        <img src="assets/candidatures.svg" class="w-5/6 mx-auto my-6" alt="">
+        <p class="text-sm text-gray-600 mb-4">View and manage the jobs you have applied to.</p>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" routerLink="/candidate/mycandidates">View Applications</button>
+      </div>
+  
+      <!-- Offres Recommandées Card -->
+      <div class="bg-white shadow-md rounded-lg p-4 border border-gray-200 h-full">
+        <h2 class="text-lg font-semibold mb-2">Offres Recommandées</h2>
+        <img src="assets/recomendation.svg" class="w-5/6 mx-auto my-6" alt="">
+        <p class="text-sm text-gray-600 mb-4">Check out job recommendations based on your profile.</p>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" routerLink="/candidate/recommendations">View Recommendations</button>
+      </div>
+    </div>
+  </div>
+  

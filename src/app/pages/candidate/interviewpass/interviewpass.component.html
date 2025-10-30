@@ -1,0 +1,77 @@
+<div *ngIf="!starting && !finished" class="m-8 bg-white border shadow-md rounded-md p-6 max-w-4xl mx-auto">
+    <img src="assets\entr.png" class="w-32 my-4">
+      <h3 class="text-2xl font-bold">Test en ligne</h3> 
+      <hr>
+      <br>
+    <b class="text-l font-bold">{{ offer.interview?.title }}</b> 
+    <p class="my-4">
+        {{ offer.interview?.description }}
+    </p>
+    <div>
+       <p class="mb-3 text-gray-500"> 
+        <span class="mr-3 fa fa-bars"></span> {{ offer.interview?.questions?.length}} different questions.
+       </p>
+       <!-- <p class="mb-3 text-gray-500"> <span class="mr-3 fa fa-clock"></span>
+         {{ offer.interview?.dure}} munites pour tous les questions.
+       </p> -->
+       
+    </div>
+    <hr />
+
+    <div class="my-3">
+        <h3 class="font-medium text-xl my-3">Avant de commancer </h3>
+        <ul class="text-gray-600">
+            <li> <span class="fa fa-check mr-2"></span>
+                Vous devez effectuer cette evaluation en une seule fois et vous assurer que votre connexion internet et fiable</li>
+            <li><span class="fa fa-check mr-2"></span> Vous pouvez repasser cette evaluation  une  fois a un nouvelle offre si accepte</li>
+            <li><span class="fa fa-check mr-2"></span> Nous ne montrons vos resultat a personne sans votre permission</li>
+        </ul>
+    </div>
+    <hr />
+    <div class="flex justify-end my-3">
+        <button (click)="startInterview()" class="bg-blue-600 text-white rounded-md px-4 py-2 mr-2">Commencer</button>
+    </div>
+</div>
+
+<div *ngIf="starting" class="max-w-3xl border mx-auto p-4 min-h-screen relative">
+   
+    <div *ngFor="let q of showedQuestions" >
+        <h3 class="font-bold my-3">
+            Question : 
+            <span class="text-gray-500">
+                {{ q.question  }}
+            </span> 
+        </h3>
+        <p class="text-gray-700 mb-3 text-md">
+            {{ q.description }}
+        </p>
+        <img src="http://localhost:8080{{ q.photo }}" class="w-32 h-32 mx-auto" *ngIf="q.photo" alt="">
+   
+
+       
+        <p class="text-gray-500">
+            <span class="text-black font-medium">Réponse </span> :  {{ q.response }}
+            
+        </p>
+    </div>
+    <h3 *ngIf="selectedQuestion"  class="font-bold my-3">Question : {{ questionNumber }}
+        <span class="text-gray-500">
+            {{ selectedQuestion.name  }}
+        </span> </h3>
+        
+    <div class="absolute bottom-10 w-full p-4">
+        <div class="flex">
+            <textarea name="interimTranscript" [(ngModel)]="interimTranscript" class="p-4 w-full border rounded-md" placeholder="Envoyer votre message ..." id=""></textarea>
+        
+            <button *ngIf="!recording" (click)="startRecognition()" class="w-32 bg-blue-600 text-white rounded-md px-4 py-2 mr-2"> 
+                <i class="fa fa-microphone"></i>
+            </button>
+            <button *ngIf="recording" (click)="nextQuestion()" class="w-32 bg-blue-600 text-white rounded-md px-4 py-2 mr-2"> 
+                <i class="fa fa-microphone-slash"></i>
+            </button>
+        </div>
+        
+    
+    </div>
+
+</div>

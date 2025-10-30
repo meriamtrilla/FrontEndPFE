@@ -1,0 +1,45 @@
+<div class="max-w-xl mx-auto">
+    <h3 class="text-2xl font-bold mb-2">Modifier les donnes personnels</h3>
+    <hr />
+    <form #userData="ngForm" (submit)="editUserData(userData)">
+        <div class="my-4">
+            <label for="firstname" class="block text-gray-700 mb-2">Nom :</label>
+            <input type="text" class="w-full p-2 border rounded" name="firstname" [(ngModel)]="user.firstname" placeholder="Nom ..." >
+        </div>
+        <div class="mb-4">
+            <label for="lastname" class="block text-gray-700 mb-2">Prénom </label>
+            <input type="text" class="w-full p-2 border rounded" name="lastname" [(ngModel)]="user.lastname" placeholder="Prenom ..." >
+        </div>
+        <div class="mb-4">
+            <label for="age" class="block text-gray-700 mb-2">Age </label>
+            <input type="number" class="w-full p-2 border rounded" name="age"  [(ngModel)]="user.age" placeholder="Age ..." >
+        </div>
+        <div class="mb-4">
+            <label for="city" class="block text-gray-700 mb-2">Ville </label>
+            <input type="text" class="w-full p-2 border rounded" name="city"  [(ngModel)]="user.city" placeholder="Ville ..." >
+        </div>
+        <div class="mb-4">
+            <label for="education" class="block text-gray-700 mb-2">Éducation </label>
+            <input type="text" class="w-full p-2 border rounded" name="education"  [(ngModel)]="user.education" placeholder="Education ..." >
+        </div>
+        <div class="mb-4">
+            <label for="speciality" class="block text-gray-700 mb-2">Spécialité </label>
+            <input type="text" class="w-full p-2 border rounded" name="speciality"  [(ngModel)]="user.speciality" placeholder="speciality ..." >
+        </div>
+        <div class="mb-4">
+            <label for="experience" class="block text-gray-700 mb-2">Expérience </label>
+            <input type="number" class="w-full p-2 border rounded" name="experience"  [(ngModel)]="user.experience" placeholder="Experience ..." >
+        </div>
+        <div class="mb-4 flex justify-between">
+            <label for="sexe" class="block text-gray-700 mb-2">Sexe </label>
+            <input type="radio" value="Homme" name="sexe"  [(ngModel)]="user.sexe"  > Homme 
+            <input type="radio" value="Femme" name="sexe"  [(ngModel)]="user.sexe"  > Femme
+        
+        </div>
+        <div class="flex justify-end">
+            <button class="bg-blue-600 text-white rounded px-3.5 py-2 mb-4" type="submit">Mettre à jour</button>
+
+        </div>
+       
+    </form>
+</div>

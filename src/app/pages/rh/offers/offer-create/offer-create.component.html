@@ -1,0 +1,172 @@
+<div class="mx-auto p-6 max-w-lg bg-white shadow-md rounded-lg mt-16">
+  <h2 class="text-2xl font-bold mb-4 text-center">Information sur l'emploi </h2>
+  <p class="text-gray-400 text-center">Ajouter des details de base sur le travaille .</p>
+
+  <form #offerForm="ngForm" (ngSubmit)="addOffer(offerForm)">
+    <div class="p-4">
+      <label for="offreName" class="block text-sm font-medium text-gray-700 mb-3">Titre d'offre</label>
+      <input type="text" id="offreName" name="title" ngModel
+        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        placeholder="Titre de offre ..." />
+
+    </div>
+
+    <div class="p-4">
+      <label for="keywords" class="block text-sm font-medium text-gray-700 mb-3">Categorie d'offre </label>
+
+
+      <select ngModel name="category_id"
+        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+        <option value="" disabled selected>choisir categorie</option>
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.title }}
+        </option>
+      </select>
+
+
+    </div>
+    <div class="px-4" *ngIf="!addCategorie">
+      <a class="text-blue-600 font-semibold cursor-pointer" (click)="setAdd()">
+        <i class="fa fa-plus"></i>
+        Ajouter une categorie</a>
+
+    </div>
+    <div class="flex flex-col p-4" *ngIf="addCategorie">
+      <input placeholder="nom du categorie ..." type="text"  #categorieName  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+      <a class="text-blue-600 font-semibold cursor-pointer my-2" (click)="addCategory(categorieName.value)">
+        <i class="fa fa-plus"></i>Ajouter une categorie</a>
+
+    </div>
+
+    <div class="p-4">
+      <label for="offreName" class="block text-sm font-medium text-gray-700 mb-3">Nombre des postes</label>
+      <input type="number" id="number" name="number_post" ngModel
+        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        placeholder="Nombre des posts ..." />
+
+    </div>
+    <div class="p-4">
+      <label for="offreName" class="block text-sm font-medium text-gray-700 mb-3">Description du post</label>
+      <textarea name="description" ngModel
+        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        placeholder="Ajouter une description au offre..."></textarea>
+
+    </div>
+    <div class="p-4">
+      <label for="offreName" class="block text-sm font-medium text-gray-700 mb-3">Experiences :</label>
+      <input type="text" id="offreName" name="experience" ngModel
+        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        placeholder="Experiences ..." />
+
+    </div>
+    <div class="p-4">
+
+      <h3 class="block text-sm font-medium text-gray-700">Type d'emploi</h3>
+      <div class="flex items-center gap-4 mt-3">
+        <label class="inline-flex items-center">
+          <input type="radio" name="type_employment" [(ngModel)]="selectedType" [value]="'Présentielle'"
+            class="form-radio text-blue-600" />
+          <span class="ml-2">Présentielle</span>
+        </label>
+
+        <label class="inline-flex items-center">
+          <input type="radio" name="type_employment" [(ngModel)]="selectedType" [value]="'En ligne'"
+            class="form-radio text-blue-600" />
+          <span class="ml-2">En ligne</span>
+        </label>
+
+        <label class="inline-flex items-center">
+          <input type="radio" name="type_employment" [(ngModel)]="selectedType" [value]="'Hybride'"
+            class="form-radio text-blue-600" />
+          <span class="ml-2">Hybride</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="p-4">
+      <h3 class="block text-sm font-medium text-gray-700">Type du contrat</h3>
+      <div class="flex items-center gap-4 mt-3">
+        <label class="inline-flex items-center">
+          <input type="radio" name="type_contract" [(ngModel)]="selectedContract" [value]="'Stage'"
+            class="form-radio text-blue-600" />
+          <span class="ml-2">Stage</span>
+        </label>
+
+        <label class="inline-flex items-center">
+          <input type="radio" name="type_contract" [(ngModel)]="selectedContract" [value]="'CDD'"
+            class="form-radio text-blue-600" />
+          <span class="ml-2">CDD</span>
+        </label>
+
+        <label class="inline-flex items-center">
+          <input type="radio" name="type_contract" [(ngModel)]="selectedContract" [value]="'CDI'"
+            class="form-radio text-blue-600" />
+          <span class="ml-2">CDI</span>
+        </label>
+        <label class="inline-flex items-center">
+          <input type="radio" name="type_contract" [(ngModel)]="selectedContract" [value]="'CIVP'"
+            class="form-radio text-blue-600" />
+          <span class="ml-2">CIVP</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="p-4">
+      <label for="keywords" class="block text-sm font-medium text-gray-700 mb-3">Entretien associe </label>
+
+
+      <select ngModel name="interview_id"
+        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+        <option value="" disabled selected>Choisir un entretien</option>
+        <option *ngFor="let interview of interviews" [value]="interview.id">
+          {{ interview.title }}
+        </option>
+      </select>
+
+
+    </div>
+    <div class="p-4">
+      <label for="keywords" class="block text-sm font-medium text-gray-700 mb-3">Test associe </label>
+      <select ngModel name="test_id"
+        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+        <option value="" disabled selected>Choisir test</option>
+        <option *ngFor="let test of tests" [value]="test.id">
+          {{ test.title }}
+        </option>
+      </select>
+
+
+    </div>
+    <div class="p-4">
+      <label for="keywords" class="block text-sm font-medium text-gray-700">Mots clés : </label>
+      <div class="flex py-2 gap-2 justify-between items-center">
+        <input type="text" id="keywords" [(ngModel)]="keyw" name="keyw"
+          class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          placeholder="ajouter un mot cle ...">
+        <a class="my-1.5 rounded bg-green-700 text-white px-3.5 py-1.5" (click)="addKeyword()">Ajouter</a>
+      </div>
+      <div class="" *ngIf="keywordsTab.length > 0">
+        <a class="px-2 py-1 bg-gray-400 me-2 rounded" *ngFor="let keyword of keywordsTab"># {{ keyword }} </a>
+      </div>
+
+    </div>
+    <div class="p-4">
+      <label for="skills" class="block text-sm font-medium text-gray-700">Compétences :</label>
+      <div class="flex gap-2 justify-between items-center">
+        <input type="text" id="skills" [(ngModel)]="skillw" name="skillw"
+          class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          placeholder="ajouter un mot cle ...">
+        <a class="my-1.5 rounded bg-green-700 text-white px-3.5 py-1.5" (click)="addSkill()">Ajouter</a>
+      </div>
+      <div class="" *ngIf="skillsTab.length > 0">
+        <a class="px-2 py-1 bg-gray-400 me-2 rounded" *ngFor="let skill of skillsTab"># {{ skill }} </a>
+      </div>
+
+    </div>
+    <div class="flex justify-end p-4">
+      <button type="submit" class="my-3 rounded bg-blue-700 text-white px-3.5 py-1.5">Ajouter offre</button>
+
+    </div>
+
+  </form>
+</div>

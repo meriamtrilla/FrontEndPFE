@@ -1,0 +1,55 @@
+<div class="w-full flex justify-center gap-3 p-8">
+    <input type="text" placeholder="Chercher par mots clees" class="w-1/3 border p-2 rounded-md">
+    
+    <button class="bg-blue-600 text-white p-2 rounded-md">Chercher</button>
+</div>
+<hr />
+<div class="max-w-6xl mx-auto flex justify-between">
+    <!-- <div class="w-1/4 flex flex-col p-8">
+        <h3 class="text-xl font-semibold my-3">Filter</h3>
+        <a class="text-blue-500">Stage</a>
+        <a class="text-blue-500">CDD</a>
+        <a class="text-blue-500">Licence</a>
+        <a class="text-blue-500">Ingenierie</a>
+        <a class="text-blue-500">Master professionels</a>
+        <h3 class="text-xl font-semibold my-3">Date d'annonce</h3>
+            <a class="text-blue-500">Dans les derniers 24 Heures</a>
+            <a class="text-blue-500">Dans les 7 derniers jours</a>
+            <a class="text-blue-500">Dans les 30 derniers jours</a>
+    </div> -->
+    <div class="w-full px-4">
+        <h3 class="text-xl font-semibold my-3">Mes candidatures</h3>
+       <div class="rounded-md border flex items-center relative my-5"  *ngFor="let c of candidates">
+                  <ng-container *ngIf="c.offer">
+
+                    <img src="assets/offer.png" alt="" class="w-48">
+                    <div class="p-4">
+                        <h2 class="text-2xl font-medium my-2">{{ c.offer.title }}</h2>
+                        <p class="text-gray-400 text-md mb-4">{{ c.offer.description }}</p>
+                        <div class="flex items-center gap-8 text-sm text-gray-600">
+                            <h3><span class="fa fa-building text-blue-600"></span> HR Bee coders</h3>
+                            <h3><span class="fa fa-location-dot text-blue-600"></span> Technopole Elghazala</h3>
+                        </div>
+                        <div class="flex items-center gap-8 text-sm text-gray-600 p-5">
+                            <h3>Nombre des postes  : {{ c.offer.number_post }}</h3>
+                            <h3>Type de contrat  : {{ c.offer.type_contract}}</h3>
+                   
+                        </div>
+                        <div class="flex items-center gap-8 text-sm text-gray-600 p-5">
+                            
+                            <a routerLink="/candidate/show-offer/{{ c.offer.id }}" class="more border rounded-md bg-gray-200 text-gray-600 px-2 py-1.5 font-semibold text-sm hover:bg-gray-300">Voir plus</a>
+                            <a (click)="cancelCandidature(+c.id)" 
+                            class="more border rounded-md bg-red-600 text-white px-2 py-1.5 font-semibold text-sm hover:bg-red-700">
+                           Annuler
+                         </a>
+                        </div>
+                    </div>
+                </ng-container>
+
+                    
+            </div>
+
+        </div> 
+        
+    </div>
+ 

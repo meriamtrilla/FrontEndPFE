@@ -1,0 +1,67 @@
+<div class="container mx-auto p-6 max-w-xl bg-white shadow-md rounded-lg mt-4">
+    <h2 class="text-2xl font-bold mb-4 text-center">Ajouter un nouveau test</h2>
+    
+    <!-- Test Form -->
+    <form (ngSubmit)="addTest(testForm)" #testForm="ngForm" class="space-y-4">
+      <div>
+        <label for="testName" class="block text-sm font-medium text-gray-700">Titre de test</label>
+        <input
+          type="text"
+          id="testName"
+          name="title"
+          ngModel
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          placeholder="Titre de test ..."
+        />
+    
+      </div>
+      <div>
+        <label for="testName" class="block text-sm font-medium text-gray-700">Description du test</label>
+        <textarea
+       
+     name="description"
+        ngModel
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          placeholder="Ajouter une description au test..."
+        ></textarea>
+    
+      </div>
+      <div>
+        <label for="testName" class="block text-sm font-medium text-gray-700">Type de test</label>
+        <select
+     name="type"
+        ngModel
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          placeholder="Ajouter une description au test..."
+        >
+        <option value="" disabled selected>CHoisir un type</option>
+        <option *ngFor="let type of testTypes" [value]="type">{{ type }}</option>
+    </select>
+    
+      </div>
+
+      <div>
+        <label for="testName" class="block text-sm font-medium text-gray-700">Durée du test ( en minutes)</label>
+        <input
+          type="number"
+          id="testName"
+          name="dure"
+          ngModel
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          placeholder="Titre de test ..."
+        />
+    
+      </div>
+  
+      <button
+        type="submit"
+        class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-blue-300"
+    
+      >
+        Ajouter
+      </button>
+    </form>
+
+   
+  </div>
+  

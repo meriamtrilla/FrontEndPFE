@@ -1,0 +1,28 @@
+<div class="max-w-2xl mx-auto shadow-md p-4 rounded-md">
+    <h1 class="my-4 text-4xl text-center font-bold">{{ offer.title }}</h1>
+    <div class="flex justify-center">
+        <button *ngIf="!checkApply(offer.id)"  (click)="openModal()" class="w-32 mx-auto bg-blue-600 rounded-md text-white px-3.5 py-2" type="button" >Postuler</button>
+         <span class="text-green-600 font-medium" *ngIf="checkApply(offer.id)">J'ai déjà postulé pour cette offre.</span>
+    </div>
+   
+    
+    <div class="py-4">
+        <h2 class="my-4 text-2xl font-bold">Detail d'annonce : </h2>
+        <hr />
+        <h3 class="my-3 text-xl font-medium">Poste propose : {{ offer.title }}</h3>
+        <p class="my-3"> {{ offer.description }}</p>
+        <h3 class="my-3">Type de contrat : {{ offer.type_contract }} </h3>
+        <h3 class="my-3">Compétences : {{ offer.skills }} </h3>
+        <h3 class="my-3">Mots clés : {{ offer.keywords }} </h3>
+   
+    </div>
+    <button *ngIf="!checkApply(offer.id)" (click)="openModal()" class="bg-blue-600 rounded-md text-white px-3.5 py-2" type="button" >Postuler</button>
+
+</div>
+
+<app-modal
+  [isOpen]="isModalOpen"
+  title="Letter of Motivation"
+  (close)="closeModal()"
+  (submit)="onSubmit($event)"
+> </app-modal>

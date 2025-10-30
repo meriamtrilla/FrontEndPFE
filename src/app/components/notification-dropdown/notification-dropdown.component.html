@@ -1,0 +1,28 @@
+<div class="relative inline-block text-left" (click)="toggleDropdown()">
+    <!-- Icône Notification -->
+    <button type="button" class="flex items-center p-2 rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none">
+      <!-- Icône (FontAwesome ou autre) -->
+      <span class="relative">
+        <svg class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-5-5.917V5a2 2 0 10-4 0v.083A6.002 6.002 0 004 11v3.159c0 .217-.042.432-.123.636L3 17h5m7 0a3 3 0 11-6 0m6 0H9" />
+        </svg>
+        <!-- Badge de Notification -->
+        <span *ngIf="notifications.length > 0" class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-600"></span>
+      </span>
+    </button>
+  
+    <!-- Dropdown Menu -->
+    <div *ngIf="dropdownOpen" class="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50" >
+      <div class="p-2">
+        <p class="text-sm text-gray-500" *ngIf="notifications.length === 0">Pas de nouvelles notifications</p>
+        <ul *ngIf="notifications.length > 0" class="divide-y divide-gray-200">
+          <li *ngFor="let notification of notifications" class="p-2 hover:bg-green-100 cursor-pointer" (click)="goTo(notification?.link)">
+            <p class="text-sm font-medium text-gray-800" >{{ notification?.title }}</p>
+           
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  

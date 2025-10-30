@@ -1,0 +1,54 @@
+<div class="max-w-4xl mx-auto  flex gap-2 shadow-md rounded my-8 p-2">
+    <div class="w-1/2 p-3">
+        <span class="bg-green-500 text-white text-sm rounded p-1.5" *ngIf="offer.status"> 
+            <i  class="fa fa-circle-check"></i> Offre publie</span> 
+            <span class="bg-red-500 text-white text-sm rounded p-1.5" *ngIf="!offer.status"> 
+                <i  class="fa fa-circle-check"></i> Offre non publiee</span> 
+         
+   
+        <h1 class="font-bold text-2xl my-3">
+           
+            {{ offer.title }} </h1>
+        <hr />
+        <h3 class="font-semibold text-md my-3" > Catégorie : {{ offer.category?.title }}  </h3>
+        <h3 class="font-semibold text-md my-3" > Type de contrat : {{ offer.type_contract }} </h3>
+        <h3 class="font-semibold text-md my-3" > Nature du travail : {{ offer.type_employment }} </h3>
+        <h3 class="font-semibold text-md my-3" > Nombre de postes : {{ offer.number_post }} </h3>
+        <h3 class="font-semibold text-md my-3" > Experiences : {{ offer.experience }} ans </h3>
+        <h3 class="font-semibold text-md my-3" > Mots clés : {{ offer.keywords }}  </h3>
+       
+    </div>
+    <div class="w-1/2 p-3">
+          
+
+          
+            <p class="rounded bg-yellow-300 w-full p-2 my-2 text-sm text-gray-500" *ngIf="!offer.status">
+                Cette offre n'est pas encore disponible dans la liste des offres , tu peux l'activer pour publier cette offre.
+            </p>
+            <h3 class="font-semibold text-xl my-3" >Description d'emploi : </h3>
+            <p>
+                {{ offer.description }}
+            </p>
+           
+        <button *ngIf="!offer.status" class="bg-blue-500 p-1.5 my-2 text-white" (click)="activaterOffer()">Activer cette offre</button>
+<div class="my-8" *ngIf="offer.status">
+    <a class="bg-red-600 mr-2 text-white p-2 rounded-md" (click)="desactivateOffre()">Desactiver</a>
+    <a class="bg-blue-600 mr-2 text-white p-2 rounded-md" routerLink="/hr/offers/{{ offer.id }}/candidates">Voir candidats</a>
+
+
+</div>
+
+    </div>
+    
+</div>
+<div class="max-w-4xl mx-auto shadow-md rounded m-2 p-2">
+    <h2 class="font-medium text-xl my-3">Les competences :</h2>
+    <div class="py-4">
+        <span *ngFor="let skill of offer.skills.split(',');index as i" class="rounded p-1.5 m-2 text-sm"
+            [style.backgroundColor]="tagColors[i]" style="color: white;" >
+            #{{ skill }}
+        </span>
+    </div>
+
+
+</div>

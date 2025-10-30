@@ -1,0 +1,31 @@
+<div class="max-w-lg mx-auto">
+    <h3 class="font-bold text-2xl text-center mb-8">Modifier membership</h3>
+
+    <form #formMembership="ngForm" (submit)="editMembership(formMembership)">
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Nom de l'établissement</label>
+            <input type="text" id="membershipName" class="w-full p-2 border rounded" name="organization" [(ngModel)]="membership.organization" required />
+        </div>
+
+        <div class="flex mb-4 gap-4">
+            <div class="w-1/2">
+                <label for="start_year" class="block text-gray-400 mb-2">Mois</label>
+                <month-select [(selectedMonth)]="membership.month" ></month-select>
+               
+            </div>
+    
+            <div class="w-1/2">
+                <label for="end_year" class="block text-gray-400 mb-2">Année</label>
+                <year-select [(selectedYear)]="membership.year" ></year-select>
+            </div>
+        </div>
+        
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Fonction dans l'organisation</label>
+            <input type="text" id="diploma" class="w-full p-2 border rounded" name="position" [(ngModel)]="membership.position" required />
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white rounded-md px-3.5 py-1.5">Mettre à jour</button>
+    </form>
+
+</div>

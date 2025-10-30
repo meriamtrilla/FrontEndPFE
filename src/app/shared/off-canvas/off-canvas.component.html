@@ -1,0 +1,32 @@
+<!-- Sidebar Container -->
+<div
+  class="min-h-full bg-gray-800 text-white flex flex-col transition-all duration-300"
+  [ngClass]="isCollapsed ? 'w-16' : 'w-64'"
+>
+
+  <!-- Toggle Button -->
+  <button
+    (click)="toggleSidebar()"
+    class="p-3 text-white hover:bg-gray-700 transition"
+  >
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Navigation Menu -->
+  <nav class="flex-1 mt-5">
+    <ul class="space-y-2">
+      <li *ngFor="let item of menuItems">
+        <a
+          routerLink="{{ item.link }}"
+          class="flex items-center gap-3 py-3 px-6 hover:bg-gray-700 transition"
+        >
+          <i [class]="item.icon"></i>
+          <span *ngIf="!isCollapsed" class="whitespace-nowrap">
+            {{ item.label }}
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+</div>

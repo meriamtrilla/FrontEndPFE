@@ -1,0 +1,225 @@
+<div class="mt-5 flex">
+  <div class="w-1/2  p-4 ">
+          <div class="bg-white border rounded-md p-4" *ngIf="!edit">
+              <div class="border p-2">
+                  <h1 class="font-bold">Detaille du Entretien : </h1>
+              </div>
+              <div class="p-4">
+                  <h1 > <b class="text-blue-700">{{ interview.title }}</b>  </h1>
+                  <p >
+                     
+                      {{ interview.description }}
+                  </p>
+                  <button (click)="activateEdit()" class="rounded bg-green-600 text-white px-3.5 py-1.5 mt-4">Modifier</button>
+              </div>
+              
+
+          </div>
+          <div class="bg-white border rounded-md p-4" *ngIf="edit">
+              <div class="border p-2">
+                  <h1 class="font-bold">Détails du Entretien : </h1>
+              </div>
+              <form (ngSubmit)="updateInterview(interviewForm)" #interviewForm="ngForm" class="space-y-4" >
+              <div>
+                <label for="interviewName" class="block text-sm font-medium text-gray-700">Titre de l’entretien</label>
+                <input
+                  type="text"
+                  id="interviewName"
+                  name="title"
+                  [(ngModel)]="interview.title"
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  placeholder="Titre de interview ..."
+                />
+            
+              </div>
+              <div>
+                <label for="interviewName" class="block text-sm font-medium text-gray-700">Description de l’entretien</label>
+                <textarea
+               
+             name="description"
+             [(ngModel)]="interview.description"
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  placeholder="Ajouter une description au interview..."
+                ></textarea>
+            
+              </div>
+              
+        
+             
+          
+              <button
+                type="submit"
+                class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-blue-300"
+            
+              >
+                Mettre a jour
+              </button>
+              </form>
+          </div>
+
+          <div class="w-full my-2">
+            <div class="bg-white border rounded-md p-4" *ngIf="questions.length > 0">
+                <div class="border p-2">
+                    <h1 class="font-bold">Liste des questions ( {{ questions.length }} ) : </h1>
+                   
+                </div>
+                <div *ngFor="let q of questions;index as i" class="p-3">
+                  <div class="flex justify-between">
+                    <h2 class="font-semibold"> Question {{ i+1 }} : </h2>
+                    <div>
+                      <span class="fa fa-pencil text-green-600 me-3" (click)="activateEditQuestion(q)" ></span>
+                      <span class="fa fa-trash text-red-600" (click)="deleteQuestion(q.id)"></span>
+                    </div>
+                   
+                  </div>
+                  
+                  <h3 class="text-gray-700">{{ q.name }}</h3>
+
+                  <ul class="mx-6 list-disc">
+                      <li class="text-gray-500" *ngFor="let r of q.responses" >
+                          {{ r }}
+                      </li>
+                    </ul>
+                  
+                  <!-- <button (click)="editQuestion(q)" class="rounded bg-blue-600 text-white px-3.5 py-1.5 mt-2">Modifier</button>
+                  <button (click)="deleteQuestion(q)" class="rounded bg-red-600 text-white px-3.5 py-1.5 mt-2">Supprimer</button> -->
+
+                </div>
+          </div></div>
+  </div>
+  <div class="w-1/2 p-4" *ngIf="!editQuestion">
+      <div class="bg-white border rounded-md p-4">
+          <div class="border p-2 flex justify-between">
+              <h1 class="font-bold">Ajouter une nouvelle question : </h1>
+              <a routerLink="/hr/interviews/{{ interview.id }}/questions">
+                  <i class="fa fa-circle-plus"></i>
+              </a>
+          </div>
+          <div class="p-4">
+              <form #questionForm="ngForm" (ngSubmit)="addQuestion(questionForm)">
+                <input [(ngModel)]="question.name" name="name" type="text" placeholder="Question ..." class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+                <!-- <div class="flex items-center justify-between">
+                  <input [(ngModel)]="question.correct_response" name="correct_response" type="text" placeholder="Si la reponse est une image cliquer sur l'icon ..." class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                 
+                  <span class="fa fa-file"></span>
+                </div> -->
+
+                <!-- <select [(ngModel)]="question.response_type" name="response_type" 
+                class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                  <option value="" selected disabled>Selectionner le type des reponses</option>
+                  <option value="1">Reponse courte</option>
+                  <option value="2">Paragraphe</option>
+                  <option value="3">Choix multiple</option>
+                  <option value="4">Case a cocher</option>
+                  <option value="5">Liste deroulante</option>
+                  <option value="6">Date</option>
+                  <option value="7">Heure</option>
+                  <option value="8">Choix multiple image</option>
+                </select> -->
+
+
+                <div >
+
+                  <div *ngIf="question.responses.length > 0" >
+                     <div *ngFor="let r of question.responses" class="flex gap-4 mx-4">
+                    
+                          <p >
+                            <span class="fa fa-check mr-3"></span>
+                            {{ r }}
+                          </p>
+                         
+
+                     </div>
+
+                  </div>
+
+                  <div class="flex gap-2">
+                    <input type="radio" name="" id="">
+                    <input type="text" [(ngModel)]="responseInput" name="rinput" class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Tapper un mot ..." />
+                  </div>
+                  <div class="my-4">
+                    <a (click)="addResponses()" class="text-blue-500">Ajouter mot cle</a>
+                  </div>
+                  
+                  </div>
+                  
+
+                <button class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-blue-300" type="submit">Ajouter</button>
+               
+
+              </form>
+          </div>
+          
+
+      </div>
+  </div>
+
+  <div class="w-1/2 p-4" *ngIf="editQuestion">
+    <div class="bg-white border rounded-md p-4">
+        <div class="border p-2 flex justify-between">
+            <h1 class="font-bold">Modifier question : </h1>
+            <a routerLink="/hr/interviews/{{ interview.id }}/questions">
+                <i class="fa fa-circle-plus"></i>
+            </a>
+        </div>
+        <div class="p-4">
+            <form #questionForm="ngForm" (ngSubmit)="updateQuestionForm(questionForm)">
+              <input [(ngModel)]="question.name" name="name" type="text" placeholder="Question ..." class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              />
+              <!-- <div class="flex items-center justify-between">
+                <input [(ngModel)]="question.correct_response" name="correct_response" type="text" placeholder="Si la reponse est une image cliquer sur l'icon ..." class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+               
+                <span class="fa fa-file"></span>
+              </div> -->
+
+              <!-- <select [(ngModel)]="question.response_type" name="response_type" 
+              class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                <option value="" selected disabled>Selectionner le type des reponses</option>
+                <option value="1">Reponse courte</option>
+                <option value="2">Paragraphe</option>
+                <option value="3">Choix multiple</option>
+                <option value="4">Case a cocher</option>
+                <option value="5">Liste deroulante</option>
+                <option value="6">Date</option>
+                <option value="7">Heure</option>
+                <option value="8">Choix multiple image</option>
+              </select> -->
+
+
+              <div >
+
+                <div *ngIf="question.responses.length > 0" >
+                   <div *ngFor="let r of question.responses" class="flex gap-4 mx-4">
+                  
+                        <p >
+                          <span class="fa fa-check mr-3"></span>
+                          {{ r }}
+                        </p>
+                       
+
+                   </div>
+
+                </div>
+
+                <div class="flex gap-2">
+                  <input type="radio" name="" id="">
+                  <input type="text" [(ngModel)]="responseInput" name="rinput" class="my-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Tapper un mot ..." />
+                </div>
+                <div class="my-4">
+                  <a (click)="addResponses()" class="text-blue-500">Ajouter mot clé</a>
+                </div>
+                
+                </div>
+                
+
+              <button class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-blue-300" type="submit">Mettre à jour</button>
+             
+
+            </form>
+        </div>
+        
+
+    </div>
+</div>
+</div>

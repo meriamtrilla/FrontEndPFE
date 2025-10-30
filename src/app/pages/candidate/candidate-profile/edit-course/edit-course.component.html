@@ -1,0 +1,48 @@
+<div class="max-w-lg mx-auto">
+    <h3 class="font-bold text-2xl text-center mb-8">Modifier course</h3>
+
+    <form #formCourse="ngForm" (submit)="editCourse(formCourse)">
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Nom</label>
+            <input type="text" id="courseName" class="w-full p-2 border rounded" name="name" [(ngModel)]="course.name" required />
+        </div>
+
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Organisme de délivrance</label>
+            <input type="text" id="courseName" class="w-full p-2 border rounded" name="training_organization" [(ngModel)]="course.training_organization" required />
+        </div>
+
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">URL de certificat</label>
+            <input type="text" id="courseName" class="w-full p-2 border rounded" name="certificat_url" [(ngModel)]="course.certificat_url" required />
+        </div>
+        <label for="end_year" class="block text-gray-400 mb-2">Date d'émission</label>
+              
+        <div class="flex mb-4 gap-4">
+            <div class="w-1/2">
+                <month-select [(selectedMonth)]="course.start_month" ></month-select>
+               
+            </div>
+    
+            <div class="w-1/2">
+                  <year-select [(selectedYear)]="course.start_year" ></year-select>
+            </div>
+        </div>
+        <label for="start_year" class="block text-gray-400 mb-2">Date d'expiration</label>
+              
+        <div class="flex mb-4 gap-4">
+            <div class="w-1/2">
+                <month-select [(selectedMonth)]="course.end_month" ></month-select>
+               
+            </div>
+    
+            <div class="w-1/2">
+                <year-select [(selectedYear)]="course.end_year" ></year-select>
+            </div>
+        </div>
+        
+      
+        <button type="submit" class="bg-blue-600 text-white rounded-md px-3.5 py-1.5">Mettre a jour</button>
+    </form>
+
+</div>

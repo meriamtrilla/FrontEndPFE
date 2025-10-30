@@ -1,0 +1,153 @@
+<div class="py-16 max-w-6xl mx-auto">
+
+    <h3 class="text-2xl font-bold text-center">{{ offer?.title }}</h3>
+    <p> </p>
+
+
+    
+    <div>
+        <div class="flex items-center justify-between">
+            <h3 class="text-medium text-2xl my-5 ">Meilleur condidates pour cette offre : </h3>
+            
+        </div>
+       
+        <div class="">
+            <div class="border" >
+
+
+                <div class="overflow-x-auto">
+                    <table class="min-w-full border-collapse border border-gray-200 bg-white">
+                      <thead class="bg-gray-100">
+                        <tr>
+                          <th class="px-6 py-3 border border-gray-200 text-left text-sm font-medium text-gray-600 uppercase">Image</th>
+                          <th class="px-6 py-3 border border-gray-200 text-left text-sm font-medium text-gray-600 uppercase">Nom et prenom </th>
+                          <th class="px-6 py-3 border border-gray-200 text-left text-sm font-medium text-gray-600 uppercase">Date de candidature </th>
+                          <th class="px-6 py-3 border border-gray-200 text-left text-sm font-medium text-gray-600 uppercase">Domaine </th>
+                          <th class="px-6 py-3 border border-gray-200 text-left text-sm font-medium text-gray-600 uppercase">Etat </th>
+                          <th class="px-6 py-3 border border-gray-200 text-left text-sm font-medium text-gray-600 uppercase">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="hover:bg-gray-50" *ngFor="let c of bestCandidates">
+                   
+                     
+                            <td class="px-6 py-4 border border-gray-200 text-gray-800"> 
+                                <img class="w-10 h-10 rounded-full" src="http://localhost:8080{{ c?.avatar }}" alt="">
+                            </td>
+                            <td class="px-6 py-4 border border-gray-200 text-gray-800">{{ c.lastname }} {{ c.firstname }}</td>
+                            <td class="px-6 py-4 border border-gray-200 text-gray-800">{{ getMyCandidate(c.id).dateCandidature }}</td>
+                            <td class="px-6 py-4 border border-gray-200 text-gray-800">{{ c.speciality }}</td>
+                            <td class="px-6 py-4 border border-gray-200 text-gray-800">
+
+                                <select  class="border p-2 rounded-md" [(ngModel)]="getMyCandidate(c.id).status">
+                                    <option value="New"  selected disabled>Nouvelle candidature</option>
+                                    <option value="Fail">Echec</option>
+                                    <option value="After_Test">Apres test</option>
+                                    <option value="Evaluation_Test">Test Evaluation</option>
+                                    <option value="On_Line_Interview">Entretien en ligne</option>
+                                    <option value="After_Interview">Après entretien</option>
+                                    <option value="Place_Interview">Entretien en personne</option>
+                                    <option value="Accepted">Embauchée</option>
+                                    
+                                </select>
+                            </td>
+                          
+                            <td class="px-6 py-4 border border-gray-200 text-gray-800">
+
+                                <a class="rounded-md bg-green-600 text-white p-2 mr-2" (click)="updateCandidatureStatus(getMyCandidate(c.id))" ><i class="fa fa-floppy-disk"></i></a>
+                                <a class="rounded-md bg-blue-600 text-white p-2 mr-2" routerLink="/hr/offers/candidate/{{ c.id}}"><i class="fa fa-eye"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+    
+
+
+    <div>
+        <div class="flex items-center justify-between">
+            <h3 class="text-medium text-2xl my-5 ">Liste des candidats</h3>
+            <select (change)="updateList()" name="filter" [(ngModel)]="filter" class="border p-2">
+                <option value="All">Tout</option>
+                <option value="New">Nouvelle candidature</option>
+                <option value="Fail">Echec</option>
+                <option value="After_Test">Apres test</option>
+                <option value="Evaluation_Test">Test Evaluation</option>
+                <option value="On_Line_Interview">Entretien En ligne</option>
+                <option value="After_Interview">Apres Entretien</option>
+                <option value="Place_Interview">Entretien En personne</option>
+                <option value="Accepted">Embauchee</option>
+             
+            </select>
+        </div>
+       
+        <div class="">
+            <div class="border" >
+
+
+                <table class="min-w-full border-collapse border border-gray-200 bg-white">
+                    <thead class="bg-gray-100">
+                      <tr>
+                        <th class="px-6 py-3 border border-gray-200 text-left text-sm font-medium text-gray-600 uppercase">Image</th>
+                        <th class="px-6 py-3 border border-gray-200 text-left text-sm font-medium text-gray-600 uppercase">Nom et prenom </th>
+                        <th class="px-6 py-3 border border-gray-200 text-left text-sm font-medium text-gray-600 uppercase">Date de candidature </th>
+                        <th class="px-6 py-3 border border-gray-200 text-left text-sm font-medium text-gray-600 uppercase">Domaine </th>
+                        <th class="px-6 py-3 border border-gray-200 text-left text-sm font-medium text-gray-600 uppercase">Etat </th>
+                        <th class="px-6 py-3 border border-gray-200 text-left text-sm font-medium text-gray-600 uppercase">Score </th>
+                        <th class="px-6 py-3 border border-gray-200 text-left text-sm font-medium text-gray-600 uppercase">Actions </th>
+                    </thead>
+                    <tbody class="border">
+                        <tr *ngFor="let candidate of localCandidatures">
+                            <td class="px-6 py-4 border border-gray-200 text-gray-800"> 
+                                <img class="w-10 h-10 rounded-full" src="http://localhost:8080{{ getUser(candidate.id)?.avatar }}" alt="">
+                            </td>
+                            <td class="px-6 py-4 border border-gray-200 text-gray-800">{{ getUser(candidate.id)?.lastname }} {{ getUser(candidate.id)?.firstname }}</td>
+                            <td class="px-6 py-4 border border-gray-200 text-gray-800">{{ candidate?.dateCandidature }}</td>
+                            <td class="px-6 py-4 border border-gray-200 text-gray-800">{{ getUser(candidate.id)?.speciality }}</td>
+                            <td class="px-6 py-4 border border-gray-200 text-gray-800">
+
+                                <select [(ngModel)]="candidate.status" class="border p-2 rounded-md">
+                                    <option value="New" selected disabled>Nouvelle candidature</option>
+                                    <option value="Fail">Echec</option>
+                                    <option value="After_Test">Apres test</option>
+                                    <option value="Evaluation_Test">Test Evaluation</option>
+                                    <option value="On_Line_Interview">Entretien en ligne</option>
+                                    <option value="After_Interview">Aprés entretien</option>
+                                    <option value="Place_Interview">Entretien en personne</option>
+                                    <option value="Accepted">Embauchée</option>
+                                    
+                                </select>
+                            </td>
+                            <td class="px-6 py-4 border border-gray-200 text-gray-800">{{ getScore(getUser(candidate.id)?.id) }}</td>
+                            <td class="px-6 py-4 border border-gray-200 text-gray-800">
+
+                                <a class="rounded-md bg-green-600 text-white p-2 mr-2" (click)="updateCandidatureStatus(candidate)"><i class="fa fa-floppy-disk"></i></a>
+                                <a class="rounded-md bg-blue-600 text-white p-2 mr-2" (click)="showUserResult(getUser(candidate.id)?.id)"> <span class="fa fa-eye"></span></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<app-meet-modal
+  [isOpen]="isModalOpen"
+  (close)="closeModal()"
+  (submit)="onSubmit($event)"
+></app-meet-modal>
+
+<app-response-iamodal
+  [isOpen]="isModalOpen1"
+  [data]="IAdata"
+  (close)="closeModal1()"
+  (submit)="onSubmit1($event)"
+></app-response-iamodal>

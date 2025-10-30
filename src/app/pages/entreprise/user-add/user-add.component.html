@@ -1,0 +1,106 @@
+<div>
+    <h3 class="text-2xl font-bold m-6 text-center">Ajouter un utilisateur</h3>
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" class="max-w-lg mx-auto mt-10 p-6 border rounded-lg shadow-lg">
+        <div class="mb-4">
+          <label for="firstname" class="block text-sm font-medium text-gray-700">Nom</label>
+          <input
+            type="text"
+            id="firstname"
+            name="firstname"
+            class="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            ngModel
+            required
+          />
+          <div *ngIf="userForm.controls['firstname']?.invalid && userForm.controls['firstname']?.touched" class="text-red-500 text-xs">
+            Nom est obligatoire.
+          </div>
+        </div>
+      
+        <div class="mb-4">
+          <label for="lastname" class="block text-sm font-medium text-gray-700">Prenom</label>
+          <input
+            type="text"
+            id="lastname"
+            name="lastname"
+            class="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            ngModel
+            required
+          />
+          <div *ngIf="userForm.controls['lastname']?.invalid && userForm.controls['lastname']?.touched" class="text-red-500 text-xs">
+            Prenom est obligatoire.
+          </div>
+        </div>
+      
+        <div class="mb-4">
+          <label for="username" class="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            ngModel
+            required
+          />
+          <div *ngIf="userForm.controls['username']?.invalid && userForm.controls['username']?.touched" class="text-red-500 text-xs">
+            Email est obligatoire.
+          </div>
+        </div>
+        <div class="mb-4">
+            <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="mt-1 p-2 w-full border border-gray-300 rounded-md"
+              ngModel
+              required
+            />
+            <div *ngIf="userForm.controls['password']?.invalid && userForm.controls['password']?.touched" class="text-red-500 text-xs">
+              Mot de passe est obligatoire.
+            </div>
+          </div>
+      
+        <div class="mb-4">
+          <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+          <select
+            id="role"
+            name="role"
+            class="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            ngModel
+            required
+          >
+            <option value="1">Admin</option>
+            <option value="3">RH</option>
+          </select>
+          <div *ngIf="userForm.controls['role']?.invalid && userForm.controls['role']?.touched" class="text-red-500 text-xs">
+            Role est obligatoire.
+          </div>
+        </div>
+      
+        <div class="mb-4">
+          <label for="phone" class="block text-sm font-medium text-gray-700">Numero telephone</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            class="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            ngModel
+            pattern="^\+?[1-9]\d{1,14}$"
+            required
+          />
+          <div *ngIf="userForm.controls['phone']?.invalid && userForm.controls['phone']?.touched" class="text-red-500 text-xs">
+            Numero telephone est obligatoire.
+          </div>
+        </div>
+      
+        <button
+          type="submit"
+          [disabled]="userForm.invalid"
+          class="mt-4 w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none"
+        >
+          Ajouter
+        </button>
+      </form>
+</div>
+
+  

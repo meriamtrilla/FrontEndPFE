@@ -1,0 +1,85 @@
+<div class="max-w-lg mx-auto py-5">
+    <h3 class="font-bold text-2xl text-center mb-8">Modifier experience</h3>
+
+    <form #formExperience="ngForm" (submit)="editExperience(formExperience)">
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Nom de la poste</label>
+            <input type="text" id="experienceName" class="w-full p-2 border rounded" name="job_title" [(ngModel)]="experience.job_title" required />
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Type d'emploi</label>
+            <select class="w-full p-2 border rounded" name="employment_type" [(ngModel)]="experience.employment_type" required>
+                <option value="" disabled>Veuillez sélectionner</option>
+                <option value="Temp plein" >Temps plein</option>
+                <option value="Temp partiel" >Temps partiel</option>
+                <option value="Stage" >Stage</option>
+                <option value="CDD" >CDD </option>
+                <option value="Freelance" >Freelance </option>
+                <option value="Contrat en alternance" >Contrat en alternance </option>
+                <option value="Saisonnier" >Saisonnier </option>
+            </select>
+            
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Nom de la société</label>
+            <input type="text" id="experienceName" class="w-full p-2 border rounded" name="company" [(ngModel)]="experience.company" required />
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Lieu</label>
+            <input type="text" id="experienceName" class="w-full p-2 border rounded" name="place" [(ngModel)]="experience.place" required />
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Type de lieu</label>
+            <select class="w-full p-2 border rounded" name="place_type" [(ngModel)]="experience.place_type">
+                <option value="" disabled>Veuillez sélectionner</option>
+                <option value="Sur site" >Sur site</option>
+                <option value="Hypride" >Hypride</option>
+                <option value="A distance" >A distance</option>
+               
+            </select>
+
+        </div>
+        <div class="mb-4 flex items-center">
+            <input type="checkbox" id="is_current" class="w-16 p-2 border rounded" name="is_current" [(ngModel)]="experience.is_current" required />
+      
+            <label for="email" class="block text-gray-400 mb-2">J'occupe actuellement ce poste</label>
+            </div>
+            <label for="start_date" class="w-full block text-gray-400 mb-2">Année de debut</label>
+        <div class="flex mb-4 gap-4">
+            
+             
+            <div class="w-1/2">
+                <month-select [(selectedMonth)]="experience.start_month"></month-select>
+            </div>
+    
+            <div class="w-1/2">
+                <year-select [(selectedYear)]="experience.start_year"></year-select>
+                </div>
+        </div>
+
+        <label for="end_date" class="w-full block text-gray-400 mb-2">Année de fin</label>
+        <div class="flex mb-4 gap-4">
+            
+             
+            <div class="w-1/2">
+                <month-select [(selectedMonth)]="experience.end_month"></month-select>
+            </div>
+    
+            <div class="w-1/2">
+                <year-select [(selectedYear)]="experience.end_year"></year-select>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Description du poste</label>
+            <textarea  class="w-full p-2 border rounded" name="description" [(ngModel)]="experience.description" required ></textarea>
+        </div>
+        
+        <!-- <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Diplome</label>
+            <input type="text" id="diploma" class="w-full p-2 border rounded" name="diploma" [(ngModel)]="experience.diploma" required />
+        </div> -->
+
+        <button type="submit" class="bg-blue-600 text-white rounded-md px-3.5 py-1.5">Mettre a jour</button>
+    </form>
+
+</div>

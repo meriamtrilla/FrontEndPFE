@@ -1,0 +1,71 @@
+/* Base styles */
+nav {
+    background-color: #ffffff; // White background
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for effect
+    padding: 1rem;
+  
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  
+    /* Flex classes for desktop */
+    .desktop-menu {
+      display: none;
+    }
+  
+    .btn-group {
+      display: none; /* Hide buttons on mobile */
+    }
+  
+    /* Ensure the mobile menu button only appears on small screens */
+    .mobile-menu-button {
+      display: flex;
+    }
+  
+    /* Button Styles */
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      font-weight: 500;
+      &:hover {
+        filter: brightness(0.9);
+      }
+  
+      &.login {
+        background-color: #3b82f6; // Blue background for "Connexion"
+        color: #ffffff;
+      }
+  
+      &.register {
+        background-color: #10b981; // Green background for "Inscription"
+        color: #ffffff;
+      }
+  
+      &.hr-space {
+        background-color: #374151; // Dark gray for "Espace RH"
+        color: #ffffff;
+      }
+    }
+  
+    /* Show the desktop menu and buttons on larger screens */
+    @media (min-width: 768px) {
+      .desktop-menu {
+        display: flex;
+        gap: 1.5rem; /* Spacing between menu items */
+      }
+  
+      .mobile-menu-button {
+        display: none; /* Hide mobile menu button on larger screens */
+      }
+  
+      .btn-group {
+        display: flex;
+        gap: 1rem; /* Spacing between buttons */
+      }
+    }
+  }
+  

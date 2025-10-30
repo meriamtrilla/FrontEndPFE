@@ -1,0 +1,110 @@
+<app-navbar></app-navbar>
+<div class="">
+    
+
+
+
+    <div class="text-center my-16">
+        <h1 class="text-2xl font-bold my-8">Trouver votre emploi de rêve </h1>
+        <p  class="text-gray-700">Rechercher un emploi actif sur le site d'emploi Beecoders, leader en Tunisie.</p>
+    </div>
+    <div class="text-center my-8 flex gap-4 justify-center">
+        <input   [(ngModel)]="searchQuery"  (keyup)="searchOffers()" class="w-96 border rounded-md px-3.5 py-2" />
+            
+       
+        <button class="border rounded-md bg-blue-600 text-white px-3.5 py-2 w-48" (click)="searchOffers()">Chercher</button>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+        <p class="text-gray-500 text-2xl my-5 ">Dernières offres d'emplois</p>
+        <hr />
+
+        <div class="rounded-md border flex items-center relative my-5"   *ngFor="let offer of offers">
+            <a routerLink="" class="more border rounded-md bg-gray-200 text-gray-600 px-2 py-1.5 font-semibold text-sm hover:bg-gray-300" routerLink="/candidate/show-offer/{{ offer.id }}">Voir plus</a>
+            <img src="assets/offer.png" alt="" class="w-48">
+            <div class="p-4">
+                   <h2 class="text-2xl font-medium my-2">{{ offer.title }}</h2> 
+                   <p class="text-gray-400 text-md mb-4">{{ offer.description }}</p>
+                  <div class="flex items-center gap-8 text-sm text-gray-600">
+                    <h3><span class="fa fa-building text-blue-600"></span> HR Bee coders</h3>
+                    <h3><span class="fa fa-location-dot text-blue-600"></span> Technopole Elghazala</h3>
+                
+                  </div>
+                    
+            </div>
+
+        </div>
+
+        <div class="my-8 text-center">
+            <a class="bg-blue-600 text-white p-2 rounded-md">Voir tout les offres ...</a>
+        </div>
+       
+    </div>
+
+    <div class="bg-blue-200 p-16">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-3xl font-bold mb-4 mt-6">BeeCoders</h3>
+            <p class="text-gray-700 mb-6 w-2/3 text-lg">
+                Bee Coders, l'agence de developpement web et mobile, met à votre disposition la competence de
+                 ses experts pour développer le produit digital qui vous correspond : une application mobile , un site internet, un logiciel, etc. 
+            </p>
+            <a href="" class="bg-blue-600 text-white rounded-md px-3.5 py-2">Consulter <i class="fa fa-angles-right"></i></a>
+        </div>
+        
+        
+
+
+       
+    </div>
+
+    <div class="px-8 py-16">
+        <h3 class="text-center font-bold text-2xl mb-8">Services de Bee Coders</h3>
+        <div class="flex justify-evenly">
+            <div class="flex gap-4 shadow-md flex-col w-48 border rounded-md justify-center items-center py-5">
+                <span class="fa fa-object-group text-2xl text-blue-600"></span>
+                <h4 class="font-bold">Web design</h4>
+            </div>
+            <div class="flex gap-4 shadow-md flex-col w-48 border rounded-md justify-center items-center py-5">
+                <span class="fa fa-laptop-code text-2xl text-blue-600"></span>
+                <h4 class="font-bold">Web Developpement </h4>
+            </div>
+            <div class="flex gap-4 shadow-md flex-col w-48 border rounded-md justify-center items-center py-5">
+                <span class="fa fa-mobile-screen text-2xl text-blue-600"></span>
+                <h4 class="font-bold">Mobile Developpement </h4>
+            </div>
+            <div class="flex gap-4 shadow-md flex-col w-48 border rounded-md justify-center items-center py-5">
+                <span class="fa fa-boxes-packing text-2xl text-blue-600"></span>
+                <h4 class="font-bold">Product managment</h4>
+            </div>
+            <div class="flex gap-4 shadow-md flex-col w-48 border rounded-md justify-center items-center py-5">
+                <span class="fa fa-wand-magic-sparkles text-2xl text-blue-600"></span>
+               
+                <h4 class="font-bold">Graphic design</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-16 bg-gray-300">
+        <h3 class="text-center font-bold text-2xl my-8">Explorez les offres d'emplois</h3>
+        <div class="max-w-4xl mx-auto flex justify-start flex-wrap bg-white p-6 rounded-md">
+            <div class="w-1/2 py-3 px-6 flex justify-between ">
+                <a href="">Developpement Web</a>  <span>( 0 )</span>
+            </div>
+            <div class="w-1/2 py-3 px-6 flex justify-between">
+                <a href="">Developpement Mobile</a>  <span>( 0 )</span>
+            </div>
+            <div class="w-1/2 py-3 px-6 flex justify-between">
+                <a href="">Marketing</a>  <span>( 0 )</span>
+            </div>
+            <div class="w-1/2 py-3 px-6 flex justify-between">
+                <a href="">UI/UX</a>  <span>( 0 )</span>
+            </div>
+          
+            
+            
+        </div>
+    </div>
+
+    <app-footer></app-footer>
+  
+</div>

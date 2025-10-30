@@ -1,0 +1,30 @@
+.login-container,
+.register-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 2rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+}
+
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  text-align: center;
+  color: #ffffff;
+
+  &.login {
+    background-color: #3b82f6; // Blue background for Login
+  }
+
+  &.register {
+    background-color: #10b981; // Green background for Register
+  }
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+}

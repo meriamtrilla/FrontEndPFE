@@ -1,0 +1,76 @@
+<!-- Backdrop -->
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+  *ngIf="isOpen"
+>
+  <!-- Modal Content -->
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg w-full animate-fade-in">
+    <!-- Modal Header -->
+    <div class="flex justify-between items-center border-b pb-2">
+      <h3 class="text-lg font-bold text-blue-600 text-center">{{ title }}</h3>
+      <button
+        (click)="closeModal()"
+        class="text-gray-400 hover:text-gray-600 focus:outline-none"
+      >
+        &times;
+      </button>
+    </div>
+
+    <!-- Modal Body with Textarea -->
+ <div *ngFor="let d of data" class="my-8">
+    <h3 class="my-3"> <span class="font-bold">Question : </span> {{ d?.question }}</h3>
+    <h3 class="my-3"> <span class="font-bold">Reponse : </span> {{ d?.response }}</h3>
+    <div>
+        
+      <div *ngIf="d?.iadata.matched_keywords?.length > 0; else noKeywords">
+        <h3 class="my-3">
+          <span class="font-bold">Mots-clés détectés : </span>
+          {{ d?.iadata.matched_keywords.join(', ') }}
+        </h3>
+        <h3 class="my-3">
+          <span class="font-bold">Quality : </span>
+          {{ d?.iadata.quality_score?.toFixed(1) }}
+        </h3>
+        <h3 class="my-3">
+          <span class="font-bold">Creativity : </span>
+          {{ d?.iadata.creativity_score?.toFixed(1) }}
+        </h3>
+        <h3 class="my-3">
+          <span class="font-bold">Relevance : </span>
+          {{ d?.iadata.relevance_score?.toFixed(1) }}
+        </h3>
+        <h3 class="my-3">
+          <span class="font-bold">Spelling : </span>
+          {{ d?.iadata.spelling_score?.toFixed(1) }}
+        </h3>
+      </div>
+    
+      <!-- Template pour aucun mot-clé détecté -->
+      <ng-template #noKeywords>
+        <h3 class="my-3">
+          <h3 class="my-3 text-red-600">
+            <span class="font-bold">Message : </span>
+            Aucun mot-clé attendu trouvé dans la réponse.
+          </h3>
+          <span class="font-bold">Relevance : </span>
+          {{ d?.iadata.relevance_score?.toFixed(1) }}
+        </h3>
+        
+      </ng-template>
+    </div>
+    <hr />
+
+ </div>
+
+    <!-- Modal Footer -->
+    <div class="flex justify-end space-x-2">
+      <button
+        (click)="closeModal()"
+        class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+      >
+        Fermer
+      </button>
+      
+    </div>
+  </div>
+</div>
