@@ -1,27 +1,5 @@
-# Frontend
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ # 🎯 Plateforme de Recrutement Intelligent — Frontend Application web Angular permettant de digitaliser le processus de recrutement, avec 4 espaces utilisateurs distincts (candidat, entreprise, RH, invité). > Projet réalisé dans le cadre de mon PFE (Projet de Fin d'Études) — ESPRIT, 2024
+## ✨ Fonctionnalités - Authentification sécurisée (JWT) avec gestion des rôles - Espace **Candidat** : candidature, suivi de dossier, entretiens - Espace **Entreprise** : publication d'offres, gestion des candidatures - Espace **RH** : gestion des employés et du recrutement interne - Architecture modulaire avec chargement à la demande (lazy loading) par espace utilisateur
+## 🛠️ Stack technique **Frontend** - Angular 16 / TypeScript - Bootstrap - Architecture par modules avec lazy loading et route guards **Backend** (repo séparé) - Java 17 / Spring Boot - Spring Security + JWT - JPA / Hibernate / MySQL
+ ## 🚀 Installation ```bash # Cloner le projet git clone https://github.com/meriamtrilla/FrontEndPFE.git # Installer les dépendances npm install # Lancer le serveur de développement ng serve ``` L'application est accessible sur `http://localhost:4200`
+  ## 👩‍💻 Auteur **Meriam Hedfi Trilla** — Ingénieure Full Stack Java/Angular [LinkedIn](https://www.linkedin.com/in/meriam-hedfi-trilla-576724224/)
